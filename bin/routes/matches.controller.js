@@ -15,6 +15,7 @@ const get_1 = require("../llama/get");
 const match_1 = require("../db/match");
 const post_1 = require("../llama/post");
 const team_1 = require("../db/team");
+const moment = require("moment");
 let MatchesController = class MatchesController {
     getAll(request, response) {
         match_1.default.find({}, (error, fixtures) => {
@@ -30,8 +31,16 @@ let MatchesController = class MatchesController {
         Promise.all([
             team_1.default.find({ name: home }),
             team_1.default.find({ name: away })
-        ]).then(teams => {
-            response.send(teams);
+        ]).then((teams) => {
+            let match = new match_1.default();
+            let home_team = teams[0];
+            let away_team = teams[1];
+            match.home_team = home_team._id;
+            match.away_team = away_team._id;
+            match.date = moment(`${date}/2018 ${time}:00`, 'DD/MM/YYYY HH:mm').toDate();
+            match.save().then(match => {
+                response.send(match);
+            });
         });
     }
 };
