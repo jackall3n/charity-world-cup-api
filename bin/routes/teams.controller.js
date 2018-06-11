@@ -13,6 +13,8 @@ const e = require("express");
 const llama_1 = require("../llama");
 const get_1 = require("../llama/get");
 const team_1 = require("../db/team");
+const post_1 = require("../llama/post");
+const group_1 = require("../db/group");
 let TeamController = class TeamController {
     getAll(request, response) {
         team_1.default.find({}, (error, teams) => {
@@ -23,6 +25,27 @@ let TeamController = class TeamController {
             response.send(teams);
         });
     }
+    add(request, response) {
+        let { name, group_id } = request.body;
+        group_1.default.findById(group_id, (error, group) => {
+            if (error) {
+                response.send(error);
+                return;
+            }
+            let team = new team_1.default();
+            team.name = name;
+            team.group = group._id;
+            team.save().then(team_result => {
+                group.teams.push(team_result._id);
+                group.save().then(group_result => {
+                    response.send({
+                        team: team_result,
+                        group: group_result
+                    });
+                });
+            });
+        });
+    }
 };
 __decorate([
     get_1.Get({ path: "/" }),
@@ -30,6 +53,12 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
 ], TeamController.prototype, "getAll", null);
+__decorate([
+    post_1.Post({ path: "/add" }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", void 0)
+], TeamController.prototype, "add", null);
 TeamController = __decorate([
     llama_1.Controller()
 ], TeamController);
