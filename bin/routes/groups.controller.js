@@ -19,10 +19,7 @@ let GroupsController = class GroupsController {
             sort: {
                 letter: 1
             }
-        }).populate({
-            path: 'teams',
-            select: 'name'
-        }).exec().then(groups => {
+        }).populate('teams').exec().then(groups => {
             response.send(groups);
         }).catch(error => {
             response.send(error);
