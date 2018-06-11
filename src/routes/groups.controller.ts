@@ -8,13 +8,13 @@ export class GroupsController {
 
     @Get({path: "/"})
     getAll(request: e.Request, response: e.Response): void {
-        Group.find({}, 'letter -_id', {
+        Group.find({}, 'letter', {
             sort: {
                 letter: 1
             }
         }).populate({
             path: 'teams',
-            select: 'name -_id'
+            select: 'name'
         }).exec().then(groups => {
             response.send(groups);
         }).catch(error => {
