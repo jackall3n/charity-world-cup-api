@@ -14,6 +14,7 @@ const llama_1 = require("../llama");
 const get_1 = require("../llama/get");
 const match_1 = require("../db/match");
 const post_1 = require("../llama/post");
+const team_1 = require("../db/team");
 let MatchesController = class MatchesController {
     getAll(request, response) {
         match_1.default.find({}, (error, fixtures) => {
@@ -25,12 +26,12 @@ let MatchesController = class MatchesController {
         });
     }
     add(request, response) {
-        match_1.default.find({}, (error, fixtures) => {
-            if (error) {
-                response.send(error);
-                return;
-            }
-            response.send(fixtures);
+        let { home, away, date, time } = request.body;
+        Promise.all([
+            team_1.default.find({ name: home }),
+            team_1.default.find({ name: away })
+        ]).then(teams => {
+            response.send(teams);
         });
     }
 };

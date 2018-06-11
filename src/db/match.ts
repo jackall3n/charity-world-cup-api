@@ -6,8 +6,8 @@ export interface IFixture extends mongoose.Document {
 
 export const FixtureSchema = new mongoose.Schema({
 
-});
+}, {collection: 'matches'});
 
-const Fixture = mongoose.model<IFixture>('Fixture', FixtureSchema);
+const Match = mongoose.model<IFixture>('Fixture', FixtureSchema);
 
-export default Fixture;
+export default Match;

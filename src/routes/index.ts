@@ -1,13 +1,13 @@
 import {TeamController} from "./teams.controller";
-import {FixturesController} from "./fixtures.controller";
+import {MatchesController} from "./matches.controller";
 import {GroupsController} from "./groups.controller";
 
 let routes: any[] = [{
     path: "/teams",
     controller: TeamController
 },{
-    path: "/fixtures",
-    controller: FixturesController
+    path: "/matches",
+    controller: MatchesController
 },{
     path: "/groups",
     controller: GroupsController
