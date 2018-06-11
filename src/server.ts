@@ -36,6 +36,12 @@ export default class ApiServer {
     initialize() {
         let baseRouter = RouteService.init(AppModule);
 
+        this.app.all('/', (request : express.Request, response : express.Response, next : express.NextFunction) => {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.header("Access-Control-Allow-Headers", "X-Requested-With");
+            next();
+        });
+
         this.app.use("/", baseRouter)
     }
 }

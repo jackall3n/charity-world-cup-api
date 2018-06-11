@@ -28,6 +28,11 @@ class ApiServer {
     }
     initialize() {
         let baseRouter = route_service_1.default.init(app_module_1.default);
+        this.app.all('/', (request, response, next) => {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.header("Access-Control-Allow-Headers", "X-Requested-With");
+            next();
+        });
         this.app.use("/", baseRouter);
     }
 }
