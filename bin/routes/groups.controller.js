@@ -15,7 +15,14 @@ const get_1 = require("../llama/get");
 const group_1 = require("../db/group");
 let GroupsController = class GroupsController {
     getAll(request, response) {
-        group_1.default.find({}).populate('teams').exec().then(groups => {
+        group_1.default.find({}, 'name -_id', {
+            sort: {
+                letter: 1
+            }
+        }).populate({
+            path: 'teams',
+            select: 'name -_id'
+        }).exec().then(groups => {
             response.send(groups);
         }).catch(error => {
             response.send(error);
