@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 const mongoose_1 = require("mongoose");
-exports.FixtureSchema = new mongoose.Schema({
+exports.MatchSchema = new mongoose.Schema({
     home_team: {
         type: mongoose_1.Schema.Types.ObjectId, ref: 'Team'
     },
@@ -11,5 +11,5 @@ exports.FixtureSchema = new mongoose.Schema({
     },
     date: Date
 }, { collection: 'matches' });
-const Match = mongoose.model('Fixture', exports.FixtureSchema);
+const Match = mongoose.model('Match', exports.MatchSchema);
 exports.default = Match;

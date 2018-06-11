@@ -11,13 +11,13 @@ export class MatchesController {
 
     @Get({path: "/"})
     getAll(request: e.Request, response: e.Response): void {
-        Match.find({}, (error, fixtures) => {
+        Match.find({}, (error, matches) => {
             if (error) {
                 response.send(error);
                 return;
             }
 
-            response.send(fixtures);
+            response.send(matches);
         })
     }
 

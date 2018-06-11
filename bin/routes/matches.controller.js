@@ -18,12 +18,12 @@ const team_1 = require("../db/team");
 const moment = require("moment");
 let MatchesController = class MatchesController {
     getAll(request, response) {
-        match_1.default.find({}, (error, fixtures) => {
+        match_1.default.find({}, (error, matches) => {
             if (error) {
                 response.send(error);
                 return;
             }
-            response.send(fixtures);
+            response.send(matches);
         });
     }
     add(request, response) {
