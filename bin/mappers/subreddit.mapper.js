@@ -65,4 +65,3 @@ SubredditInformationMapper = __decorate([
     mapper_1.Mapper()
 ], SubredditInformationMapper);
 exports.SubredditInformationMapper = SubredditInformationMapper;
-//# sourceMappingURL=subreddit.mapper.js.map

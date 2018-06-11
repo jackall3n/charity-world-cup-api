@@ -33,4 +33,3 @@ RouteService = __decorate([
     llama_1.Service()
 ], RouteService);
 exports.default = RouteService;
-//# sourceMappingURL=route.service.js.map

@@ -5,4 +5,3 @@ function initialize(co) {
     console.log(co);
 }
 exports.Controller = decorator_1.makeDecorator('Controller', (co = {}) => (Object.assign({ initialize }, co)));
-//# sourceMappingURL=controller.js.map

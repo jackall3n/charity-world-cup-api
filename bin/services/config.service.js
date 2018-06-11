@@ -28,4 +28,3 @@ ConfigService = __decorate([
     llama_1.Service()
 ], ConfigService);
 exports.default = ConfigService;
-//# sourceMappingURL=config.service.js.map

@@ -66,4 +66,3 @@ function makePropDecorator(name, props, parentClass) {
     return PropDecoratorFactory;
 }
 exports.makePropDecorator = makePropDecorator;
-//# sourceMappingURL=decorator.js.map

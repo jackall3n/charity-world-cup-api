@@ -30,7 +30,7 @@ let AuthorisationController = class AuthorisationController {
 __decorate([
     post_1.Post({ path: "/" }),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_a = (typeof e !== "undefined" && e).Request) === "function" && _a || Object, typeof (_b = (typeof e !== "undefined" && e).Response) === "function" && _b || Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
 ], AuthorisationController.prototype, "accessToken", null);
 AuthorisationController = __decorate([
@@ -38,5 +38,3 @@ AuthorisationController = __decorate([
     __metadata("design:paramtypes", [reddit_service_1.default])
 ], AuthorisationController);
 exports.AuthorisationController = AuthorisationController;
-var _a, _b;
-//# sourceMappingURL=auth.controller.js.map

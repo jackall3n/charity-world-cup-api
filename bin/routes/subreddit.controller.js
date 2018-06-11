@@ -41,13 +41,13 @@ let SubredditController = class SubredditController {
 __decorate([
     get_1.Get({ path: "/" }),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_a = (typeof e !== "undefined" && e).Request) === "function" && _a || Object, typeof (_b = (typeof e !== "undefined" && e).Response) === "function" && _b || Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
 ], SubredditController.prototype, "get", null);
 __decorate([
     get_1.Get({ path: "/about" }),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_c = (typeof e !== "undefined" && e).Request) === "function" && _c || Object, typeof (_d = (typeof e !== "undefined" && e).Response) === "function" && _d || Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
 ], SubredditController.prototype, "about", null);
 SubredditController = __decorate([
@@ -57,5 +57,3 @@ SubredditController = __decorate([
     __metadata("design:paramtypes", [reddit_service_1.default])
 ], SubredditController);
 exports.SubredditController = SubredditController;
-var _a, _b, _c, _d;
-//# sourceMappingURL=subreddit.controller.js.map

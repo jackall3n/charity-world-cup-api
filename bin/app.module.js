@@ -17,4 +17,3 @@ AppModule = __decorate([
     })
 ], AppModule);
 exports.default = AppModule;
-//# sourceMappingURL=app.module.js.map

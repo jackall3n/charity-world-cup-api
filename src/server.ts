@@ -1,13 +1,7 @@
 import * as express from "express"
 import * as logger from "morgan"
 import * as bodyParser from "body-parser";
-import routes from './routes/index'
 import AppModule from "./app.module";
-import {Server} from "./llama/server";
-import {ANNOTATIONS} from "./llama";
-import {reflector} from "./llama/reflection";
-import {SubredditController} from "./routes/subreddit.controller";
-import {Injector} from "./services/injector.service";
 import RouteService from "./services/route.service";
 
 export default class ApiServer {

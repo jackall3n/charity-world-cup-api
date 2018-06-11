@@ -9,4 +9,3 @@ __export(require("./route"));
 __export(require("./type"));
 __export(require("./module"));
 __export(require("./service"));
-//# sourceMappingURL=index.js.map

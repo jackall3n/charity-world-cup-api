@@ -10,4 +10,3 @@ let routes = [{
         controller: auth_controller_1.AuthorisationController
     }];
 exports.default = routes;
-//# sourceMappingURL=index.js.map

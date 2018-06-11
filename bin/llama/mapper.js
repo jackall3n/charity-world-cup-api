@@ -6,4 +6,3 @@ exports.Mapper = () => {
         injector_service_1.Injector.set(target);
     };
 };
-//# sourceMappingURL=mapper.js.map

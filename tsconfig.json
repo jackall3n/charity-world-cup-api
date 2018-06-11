@@ -13,7 +13,7 @@
         "target": "es6",
         "outDir": "bin",
         "rootDir": "src",
-        "sourceMap": true,
+        "sourceMap": false,
         "baseUrl": ".",
         "moduleResolution": "node",
         "removeComments": true,

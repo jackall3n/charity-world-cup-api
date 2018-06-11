@@ -12,4 +12,3 @@ class Reflector {
     }
 }
 exports.Reflector = Reflector;
-//# sourceMappingURL=reflector.js.map
