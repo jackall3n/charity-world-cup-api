@@ -20,7 +20,7 @@ db.onError((error) => {
 db.onDisconnected(() => {
     console.log("mongo disconnected");
     if (connection_attempts < max_connection_attempts) {
-        max_connection_attempts++;
+        connection_attempts++;
         db.connect();
     }
 });
