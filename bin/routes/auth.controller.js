@@ -19,6 +19,14 @@ let AuthController = class AuthController {
     login(request, response) {
         let { email, password } = request.body;
         user_1.default.findOne({ email }, (error, user) => {
+            if (error) {
+                return response.send(error);
+            }
+            if (!user) {
+                return response.send({
+                    success: false
+                });
+            }
             user.comparePassword(password).then(matched => {
                 if (matched) {
                     let token = jwt.sign({ id: user._id }, config_1.default.auth.secret, {
