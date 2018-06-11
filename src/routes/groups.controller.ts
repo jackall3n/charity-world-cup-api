@@ -8,7 +8,7 @@ export class GroupsController {
 
     @Get({path: "/"})
     getAll(request: e.Request, response: e.Response): void {
-        Group.find({}, 'name -_id', {
+        Group.find({}, 'letter -_id', {
             sort: {
                 letter: 1
             }

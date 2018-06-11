@@ -15,7 +15,7 @@ const get_1 = require("../llama/get");
 const group_1 = require("../db/group");
 let GroupsController = class GroupsController {
     getAll(request, response) {
-        group_1.default.find({}, 'name -_id', {
+        group_1.default.find({}, 'letter -_id', {
             sort: {
                 letter: 1
             }
