@@ -6,7 +6,8 @@ exports.TeamSchema = new mongoose.Schema({
     name: String,
     code: String,
     group: {
-        type: mongoose_1.Schema.Types.ObjectId, ref: 'Group'
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'Group'
     }
 });
 const Team = mongoose.model('Team', exports.TeamSchema);
