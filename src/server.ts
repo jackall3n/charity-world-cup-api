@@ -20,6 +20,13 @@ export default class ApiServer {
     }
 
     config() {
+        this.app.all('*', function(request: express.Request, response: express.Response, next : express.NextFunction) {
+            response.header('Access-Control-Allow-Origin', '*');
+            response.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+            response.header('Access-Control-Allow-Headers', 'Content-Type');
+            next();
+        });
+
         this.app.use(logger('dev'));
 
         this.app.use(bodyParser.json());
@@ -35,12 +42,6 @@ export default class ApiServer {
 
     initialize() {
         let baseRouter = RouteService.init(AppModule);
-
-        this.app.all('/', (request : express.Request, response : express.Response, next : express.NextFunction) => {
-            response.header("Access-Control-Allow-Origin", "*");
-            response.header("Access-Control-Allow-Headers", "X-Requested-With");
-            next();
-        });
 
         this.app.use("/", baseRouter)
     }
