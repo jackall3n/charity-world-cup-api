@@ -18,12 +18,10 @@ const team_1 = require("../db/schemas/team");
 const moment = require("moment");
 let MatchesController = class MatchesController {
     getAll(request, response) {
-        match_1.default.find({}, (error, matches) => {
-            if (error) {
-                response.send(error);
-                return;
-            }
+        match_1.default.find({}).populate('home_team away_team').exec().then((matches) => {
             response.send(matches);
+        }).catch(error => {
+            response.send(error);
         });
     }
     add(request, response) {

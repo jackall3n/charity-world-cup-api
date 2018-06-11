@@ -3,7 +3,10 @@
 import appServer from "./server";
 import * as debug from "debug";
 import * as env from "dotenv";
+import * as passport from 'passport';
+
 import Database from './db';
+import config from './config';
 
 import {createServer} from "http";
 
@@ -19,7 +22,7 @@ app.set('port', port);
 
 let server = createServer(app);
 
-let db = new Database(process.env.DB_STRING);
+let db = new Database(config.database.address);
 
 db.onError((error) => {
    console.log(error)

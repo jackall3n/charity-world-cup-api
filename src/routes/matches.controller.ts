@@ -11,13 +11,10 @@ export class MatchesController {
 
     @Get({path: "/"})
     getAll(request: e.Request, response: e.Response): void {
-        Match.find({}, (error, matches) => {
-            if (error) {
-                response.send(error);
-                return;
-            }
-
+        Match.find({}).populate('home_team away_team').exec().then( (matches) => {
             response.send(matches);
+        }).catch(error => {
+            response.send(error);
         })
     }
 
