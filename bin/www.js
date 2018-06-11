@@ -9,6 +9,8 @@ const http_1 = require("http");
 env.load();
 let port = normalizePort(process.env.PORT || 3000);
 let app = server_1.default.bootstrap().app;
+let connection_attempts = 0;
+let max_connection_attempts = 5;
 app.set('port', port);
 let server = http_1.createServer(app);
 let db = new db_1.default("mongodb://dbadmin:dbadmin1@ds111078.mlab.com:11078/charity-world-cup");
@@ -17,7 +19,10 @@ db.onError((error) => {
 });
 db.onDisconnected(() => {
     console.log("mongo disconnected");
-    db.connect();
+    if (connection_attempts < max_connection_attempts) {
+        max_connection_attempts++;
+        db.connect();
+    }
 });
 db.open(() => {
     console.log("mongo connected");

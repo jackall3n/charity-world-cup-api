@@ -12,6 +12,9 @@ env.load();
 let port = normalizePort(process.env.PORT || 3000);
 let app = appServer.bootstrap().app;
 
+let connection_attempts = 0;
+let max_connection_attempts = 5;
+
 app.set('port', port);
 
 let server = createServer(app);
@@ -24,7 +27,10 @@ db.onError((error) => {
 
 db.onDisconnected(() => {
     console.log("mongo disconnected");
-    db.connect();
+    if(connection_attempts < max_connection_attempts) {
+        max_connection_attempts++;
+        db.connect();
+    }
 });
 
 db.open(() => {
