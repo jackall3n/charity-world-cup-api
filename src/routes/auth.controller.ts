@@ -16,6 +16,16 @@ export class AuthController {
         } = request.body;
 
         User.findOne({email}, (error, user) => {
+            if(error) {
+                return response.send(error);
+            }
+
+            if(!user) {
+                return response.send({
+                    success: false
+                })
+            }
+
             user.comparePassword(password).then(matched => {
                 if(matched) {
                     let token = jwt.sign({ id: user._id }, configuration.auth.secret, {
