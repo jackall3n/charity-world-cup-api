@@ -5,7 +5,7 @@ const _1 = require("./");
 const user_1 = require("../db/schemas/user");
 function default_1(passport) {
     let options = {
-        jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeader(),
+        jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderWithScheme('jwt'),
         secretOrKey: _1.default.auth.secret
     };
     passport.use(new passport_jwt_1.Strategy(options, (payload, done) => {

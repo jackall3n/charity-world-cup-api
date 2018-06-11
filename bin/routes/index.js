@@ -3,7 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const teams_controller_1 = require("./teams.controller");
 const matches_controller_1 = require("./matches.controller");
 const groups_controller_1 = require("./groups.controller");
+const auth_controller_1 = require("./auth.controller");
 let routes = [{
+        path: "/auth",
+        controller: auth_controller_1.AuthController
+    }, {
         path: "/teams",
         controller: teams_controller_1.TeamController
     }, {

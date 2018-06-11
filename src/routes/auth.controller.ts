@@ -18,10 +18,18 @@ export class AuthController {
         User.findOne({email}, (error, user) => {
             user.comparePassword(password).then(matched => {
                 if(matched) {
-                    let token = jwt.sign(user, configuration.auth.secret);
+                    let token = jwt.sign({ id: user._id }, configuration.auth.secret, {
+                        expiresIn: '2 days'
+                    });
 
                     response.send({
-                        token
+                        token,
+                        success: true
+                    })
+                }
+                else {
+                    response.send({
+                        success: false
                     })
                 }
             }).catch(error => {
@@ -34,19 +42,25 @@ export class AuthController {
     register(request: e.Request, response: e.Response): void {
         let {
             email,
-            name,
+            first,
+            last,
             password
         } = request.body;
 
         let user = new User({
             email,
-            name,
+            name: {
+                first, 
+                last
+            },
             password
         });
 
-        user.save().then(user => {
-            response.send(user);
+        user.save().then(result => {
+            console.log("success", result)
+            response.send(result);
         }).catch(error => {
+            console.log("error", error)
             response.send(error)
         })
     }
