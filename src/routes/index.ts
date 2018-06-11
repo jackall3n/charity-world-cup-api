@@ -1,12 +1,8 @@
-import {SubredditController} from "./subreddit.controller";
-import {AuthorisationController} from "./auth.controller";
+import {TeamController} from "./teams.controller";
 
 let routes: any[] = [{
-    path: "/r/:subreddit",
-    controller: SubredditController
-}, {
-    path: "/access_token",
-    controller: AuthorisationController
+    path: "/teams",
+    controller: TeamController
 }];
 
 export default routes;

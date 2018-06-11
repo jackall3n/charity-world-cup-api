@@ -22,11 +22,13 @@ db.onError((error) => {
    console.log(error)
 });
 
-db.onDisconnected((args) => {
-    console.log(args);
+db.onDisconnected(() => {
+    console.log("mongo disconnected");
+    db.connect();
 });
 
 db.open(() => {
+    console.log("mongo connected");
     server.listen(port)
 });
 

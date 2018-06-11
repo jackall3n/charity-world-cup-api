@@ -1,12 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const subreddit_controller_1 = require("./subreddit.controller");
-const auth_controller_1 = require("./auth.controller");
+const teams_controller_1 = require("./teams.controller");
 let routes = [{
-        path: "/r/:subreddit",
-        controller: subreddit_controller_1.SubredditController
-    }, {
-        path: "/access_token",
-        controller: auth_controller_1.AuthorisationController
+        path: "/teams",
+        controller: teams_controller_1.TeamController
     }];
 exports.default = routes;

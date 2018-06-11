@@ -15,10 +15,12 @@ let db = new db_1.default("mongodb://dbadmin:dbadmin1@ds111078.mlab.com:11078/ch
 db.onError((error) => {
     console.log(error);
 });
-db.onDisconnected((args) => {
-    console.log(args);
+db.onDisconnected(() => {
+    console.log("mongo disconnected");
+    db.connect();
 });
 db.open(() => {
+    console.log("mongo connected");
     server.listen(port);
 });
 db.connect();
