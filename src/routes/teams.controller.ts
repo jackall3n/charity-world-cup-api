@@ -1,10 +1,10 @@
 import * as e from "express"
 import {Controller} from "../llama";
 import {Get} from "../llama/get";
-import Team from "../db/team";
+import Team from "../db/schemas/team";
 import {Post} from "../llama/post";
 import * as mongoose from "mongoose";
-import Group from "../db/group";
+import Group from "../db/schemas/group";
 
 @Controller()
 export class TeamController {

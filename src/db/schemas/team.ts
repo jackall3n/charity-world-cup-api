@@ -11,7 +11,8 @@ export const TeamSchema = new mongoose.Schema({
     name: String,
     code: String,
     group: {
-        type: Schema.Types.ObjectId, ref: 'Group'
+        type: Schema.Types.ObjectId,
+        ref: 'Group'
     }
 });
 

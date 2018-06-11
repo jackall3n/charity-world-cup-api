@@ -1,9 +1,9 @@
 import * as e from "express"
 import {Controller} from "../llama";
 import {Get} from "../llama/get";
-import Match from "../db/match";
+import Match from "../db/schemas/match";
 import {Post} from "../llama/post";
-import Team from "../db/team";
+import Team from "../db/schemas/team";
 import * as moment from "moment";
 
 @Controller()
@@ -34,7 +34,7 @@ export class MatchesController {
         Promise.all([
             Team.find({name: home}),
             Team.find({name: away})
-        ]).then((teams : any[]) => {
+        ]).then((teams: any[]) => {
             let match = new Match();
 
             let home_team = teams[0];
@@ -46,7 +46,7 @@ export class MatchesController {
             match.date = moment(`${date}/2018 ${time}:00`, 'DD/MM/YYYY HH:mm').toDate();
 
             match.save().then(match => {
-                response.send(match);
+                response.send({match, teams});
             })
         });
     }

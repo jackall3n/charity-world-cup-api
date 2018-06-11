@@ -1,7 +1,7 @@
 import * as e from "express"
 import {Controller} from "../llama";
 import {Get} from "../llama/get";
-import Group from "../db/group";
+import Group from "../db/schemas/group";
 
 @Controller()
 export class GroupsController {

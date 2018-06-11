@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const e = require("express");
 const llama_1 = require("../llama");
 const get_1 = require("../llama/get");
-const team_1 = require("../db/team");
+const team_1 = require("../db/schemas/team");
 const post_1 = require("../llama/post");
-const group_1 = require("../db/group");
+const group_1 = require("../db/schemas/group");
 let TeamController = class TeamController {
     getAll(request, response) {
         team_1.default.find({}, (error, teams) => {

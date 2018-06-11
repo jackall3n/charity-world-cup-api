@@ -8,7 +8,8 @@ export interface IGroup extends Document {
 export const GroupSchema = new Schema({
     letter: String,
     teams: [{
-        type: Schema.Types.ObjectId, ref: 'Team'
+        type: Schema.Types.ObjectId,
+        ref: 'Team'
     }]
 });
 

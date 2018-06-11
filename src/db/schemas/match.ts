@@ -9,10 +9,12 @@ export interface IMatch extends mongoose.Document {
 
 export const MatchSchema = new mongoose.Schema({
     home_team: {
-        type: Schema.Types.ObjectId, ref: 'Team'
+        type: Schema.Types.ObjectId,
+        ref: 'Team'
     },
     away_team: {
-        type: Schema.Types.ObjectId, ref: 'Team'
+        type: Schema.Types.ObjectId,
+        ref: 'Team'
     },
     date: Date
 }, {collection: 'matches'});

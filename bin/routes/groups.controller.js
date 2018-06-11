@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const e = require("express");
 const llama_1 = require("../llama");
 const get_1 = require("../llama/get");
-const group_1 = require("../db/group");
+const group_1 = require("../db/schemas/group");
 let GroupsController = class GroupsController {
     getAll(request, response) {
         group_1.default.find({}, 'letter', {

@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const e = require("express");
 const llama_1 = require("../llama");
 const get_1 = require("../llama/get");
-const match_1 = require("../db/match");
+const match_1 = require("../db/schemas/match");
 const post_1 = require("../llama/post");
-const team_1 = require("../db/team");
+const team_1 = require("../db/schemas/team");
 const moment = require("moment");
 let MatchesController = class MatchesController {
     getAll(request, response) {
@@ -39,7 +39,7 @@ let MatchesController = class MatchesController {
             match.away_team = away_team._id;
             match.date = moment(`${date}/2018 ${time}:00`, 'DD/MM/YYYY HH:mm').toDate();
             match.save().then(match => {
-                response.send(match);
+                response.send({ match, teams });
             });
         });
     }
