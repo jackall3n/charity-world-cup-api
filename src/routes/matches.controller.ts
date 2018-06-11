@@ -32,8 +32,8 @@ export class MatchesController {
         } = request.body;
 
         Promise.all([
-            Team.find({name: home}),
-            Team.find({name: away})
+            Team.findOne({name: home}),
+            Team.findOne({name: away})
         ]).then((teams: any[]) => {
             let match = new Match();
 

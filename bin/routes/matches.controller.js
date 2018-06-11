@@ -29,8 +29,8 @@ let MatchesController = class MatchesController {
     add(request, response) {
         let { home, away, date, time } = request.body;
         Promise.all([
-            team_1.default.find({ name: home }),
-            team_1.default.find({ name: away })
+            team_1.default.findOne({ name: home }),
+            team_1.default.findOne({ name: away })
         ]).then((teams) => {
             let match = new match_1.default();
             let home_team = teams[0];
