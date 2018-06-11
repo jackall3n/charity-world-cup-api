@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^2.0.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^5.0.1",
@@ -18,8 +19,7 @@
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "reflect-metadata": "^0.1.12",
-    "bcrypt": "latest"
+    "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {
     "@types/bcrypt": "^2.0.0",
