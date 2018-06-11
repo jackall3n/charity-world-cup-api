@@ -12,6 +12,7 @@
     "debug": "~2.6.9",
     "dotenv": "^5.0.1",
     "express": "~4.16.0",
+    "heroku": "^7.0.88",
     "http-errors": "~1.6.2",
     "jsonwebtoken": "^8.3.0",
     "moment": "^2.22.2",

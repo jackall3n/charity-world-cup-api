@@ -49,6 +49,5 @@ export class AuthController {
         }).catch(error => {
             response.send(error)
         })
-
     }
 }
