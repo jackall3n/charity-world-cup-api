@@ -18,7 +18,8 @@
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "reflect-metadata": "^0.1.12"
+    "reflect-metadata": "^0.1.12",
+    "bcrypt": "latest"
   },
   "devDependencies": {
     "@types/bcrypt": "^2.0.0",
