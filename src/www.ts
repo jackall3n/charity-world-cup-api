@@ -19,7 +19,7 @@ app.set('port', port);
 
 let server = createServer(app);
 
-let db = new Database("mongodb://dbadmin:dbadmin1@ds111078.mlab.com:11078/charity-world-cup");
+let db = new Database(process.env.DB_STRING);
 
 db.onError((error) => {
    console.log(error)

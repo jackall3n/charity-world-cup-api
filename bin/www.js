@@ -13,7 +13,7 @@ let connection_attempts = 0;
 let max_connection_attempts = 5;
 app.set('port', port);
 let server = http_1.createServer(app);
-let db = new db_1.default("mongodb://dbadmin:dbadmin1@ds111078.mlab.com:11078/charity-world-cup");
+let db = new db_1.default(process.env.DB_STRING);
 db.onError((error) => {
     console.log(error);
 });
