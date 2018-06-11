@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 class Database {
     constructor(uri) {
         this.uri = uri;
-        this.db_options = { server: { socketOptions: { keepAlive: 1 } } };
+        this.db_options = { keepAlive: 1 };
     }
     connect() {
         mongoose.connect(this.uri, this.db_options);
