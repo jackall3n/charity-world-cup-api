@@ -7,10 +7,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^2.0.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^5.0.1",
     "express": "~4.16.0",
+    "heroku": "^7.0.88",
     "http-errors": "~1.6.2",
     "jsonwebtoken": "^8.3.0",
     "moment": "^2.22.2",
@@ -19,7 +21,7 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.12",
-    "bcrypt": "latest"
+    "typescript": "^2.9.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^2.0.0",

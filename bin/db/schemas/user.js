@@ -18,7 +18,7 @@ exports.UserSchema = new mongoose_1.Schema({
         last: String
     }
 });
-exports.UserSchema.pre('save', next => {
+exports.UserSchema.pre('save', function (next) {
     let user = this;
     if (user.isModified('password') || user.isNew) {
         bcrypt.genSalt(10).then(salt => {
@@ -36,7 +36,7 @@ exports.UserSchema.pre('save', next => {
         next();
     }
 });
-exports.UserSchema.methods.comparePassword = (_password) => {
+exports.UserSchema.methods.comparePassword = function (_password) {
     return bcrypt.compare(_password, this.password);
 };
 const User = mongoose_1.model('User', exports.UserSchema);

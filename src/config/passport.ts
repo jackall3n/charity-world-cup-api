@@ -4,7 +4,7 @@ import User from "../db/schemas/user";
 
 export default function (passport: any) {
     let options = {
-        jwtFromRequest: ExtractJwt.fromAuthHeader(),
+        jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
         secretOrKey: config.auth.secret
     };
 

@@ -25,8 +25,8 @@ export const UserSchema = new Schema({
     }
 });
 
-UserSchema.pre('save', next => {
-    let user = this;
+UserSchema.pre('save', function(next) {
+    let user : any = this;
 
     if (user.isModified('password') || user.isNew) {
         bcrypt.genSalt(10).then(salt => {
@@ -45,7 +45,7 @@ UserSchema.pre('save', next => {
     }
 });
 
-UserSchema.methods.comparePassword = (_password: String) => {
+UserSchema.methods.comparePassword = function(_password: String) {
     return bcrypt.compare(_password, this.password);
 };
 
