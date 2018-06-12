@@ -5,7 +5,7 @@ import User from "../db/schemas/user";
 export default function (passport: any) {
     let options = {
         jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
-        secretOrKey: config.auth.secret
+        secretOrKey: config.auth.secret || "test"
     };
 
     passport.use(new Strategy(options, (payload, done) => {
