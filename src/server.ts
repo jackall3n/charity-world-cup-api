@@ -25,7 +25,7 @@ export default class ApiServer {
         this.app.all('*', function(request: express.Request, response: express.Response, next : express.NextFunction) {
             response.header('Access-Control-Allow-Origin', '*');
             response.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-            response.header('Access-Control-Allow-Headers', 'Content-Type');
+            response.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
             next();
         });
 
