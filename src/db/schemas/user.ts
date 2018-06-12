@@ -1,5 +1,5 @@
 import {Schema, Document, model} from "mongoose";
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 
 export interface IUser extends Document {
     email: string;
@@ -45,7 +45,7 @@ UserSchema.pre('save', function(next) {
     }
 });
 
-UserSchema.methods.comparePassword = function(_password: String) {
+UserSchema.methods.comparePassword = function(_password: string) {
     return bcrypt.compare(_password, this.password);
 };
 
