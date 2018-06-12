@@ -23,7 +23,7 @@ let AuthController = class AuthController {
                 return response.send(error);
             }
             if (!user) {
-                return response.send({
+                return response.status(404).send({
                     success: false
                 });
             }
@@ -38,7 +38,7 @@ let AuthController = class AuthController {
                     });
                 }
                 else {
-                    response.send({
+                    response.status(404).send({
                         success: false
                     });
                 }
@@ -48,21 +48,29 @@ let AuthController = class AuthController {
         });
     }
     register(request, response) {
-        let { email, first, last, password } = request.body;
+        let { email, firstName, lastName, password } = request.body;
         let user = new user_1.default({
             email,
             name: {
-                first,
-                last
+                first: firstName,
+                last: lastName
             },
             password
         });
         user.save().then(result => {
-            console.log("success", result);
-            response.send(result);
+            let token = jwt.sign({ id: user._id }, config_1.default.auth.secret, {
+                expiresIn: '2 days'
+            });
+            response.send({
+                token,
+                success: true
+            });
         }).catch(error => {
             console.log("error", error);
-            response.send(error);
+            response.send({
+                error,
+                success: false
+            });
         });
     }
 };

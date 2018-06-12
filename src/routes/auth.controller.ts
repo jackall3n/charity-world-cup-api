@@ -21,7 +21,7 @@ export class AuthController {
             }
 
             if(!user) {
-                return response.send({
+                return response.status(404).send({
                     success: false
                 })
             }
@@ -38,7 +38,7 @@ export class AuthController {
                     })
                 }
                 else {
-                    response.send({
+                    response.status(404).send({
                         success: false
                     })
                 }
@@ -52,26 +52,36 @@ export class AuthController {
     register(request: e.Request, response: e.Response): void {
         let {
             email,
-            first,
-            last,
+            firstName,
+            lastName,
             password
         } = request.body;
 
         let user = new User({
             email,
             name: {
-                first, 
-                last
+                first: firstName,
+                last: lastName
             },
             password
         });
 
         user.save().then(result => {
-            console.log("success", result)
-            response.send(result);
+            let token = jwt.sign({ id: user._id }, configuration.auth.secret, {
+                expiresIn: '2 days'
+            });
+
+            response.send({
+                token,
+                success: true
+            })
+
         }).catch(error => {
-            console.log("error", error)
-            response.send(error)
+            console.log("error", error);
+            response.send({
+                error,
+                success: false
+            })
         })
     }
 }
