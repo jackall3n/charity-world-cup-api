@@ -15,7 +15,7 @@ const user_1 = require("../db/schemas/user");
 const get_1 = require("../llama/get");
 let MeController = class MeController {
     me(request, response) {
-        user_1.default.findOne(request.user.id).exec().then(user => {
+        user_1.default.findById(request.user.id).exec().then(user => {
             response.send({
                 id: user._id,
                 name: user.name
