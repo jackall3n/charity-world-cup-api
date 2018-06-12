@@ -15,9 +15,18 @@ export class AuthController {
             password
         } = request.body;
 
+        if(!email || !password) {
+            response.status(400).send({
+                success: false
+            });
+            return
+        }
+
         User.findOne({email}, (error, user) => {
             if(error) {
-                return response.send(error);
+                return response.status(404).send({
+                    success: false
+                })
             }
 
             if(!user) {
@@ -42,8 +51,10 @@ export class AuthController {
                         success: false
                     })
                 }
-            }).catch(error => {
-                response.send(error)
+            }).catch(() => {
+                response.status(400).send({
+                    success: false
+                })
             })
         });
     }
@@ -56,6 +67,13 @@ export class AuthController {
             lastName,
             password
         } = request.body;
+
+        if(!email || !firstName || !lastName || !password) {
+            response.status(400).send({
+                success: false
+            });
+            return
+        }
 
         let user = new User({
             email,
@@ -76,12 +94,10 @@ export class AuthController {
                 success: true
             })
 
-        }).catch(error => {
-            console.log("error", error);
-            response.send({
-                error,
+        }).catch(() => {
+            response.send(400).send({
                 success: false
-            })
+            });
         })
     }
 }

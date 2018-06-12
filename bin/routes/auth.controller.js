@@ -18,9 +18,17 @@ const config_1 = require("../config");
 let AuthController = class AuthController {
     login(request, response) {
         let { email, password } = request.body;
+        if (!email || !password) {
+            response.status(400).send({
+                success: false
+            });
+            return;
+        }
         user_1.default.findOne({ email }, (error, user) => {
             if (error) {
-                return response.send(error);
+                return response.status(404).send({
+                    success: false
+                });
             }
             if (!user) {
                 return response.status(404).send({
@@ -42,13 +50,21 @@ let AuthController = class AuthController {
                         success: false
                     });
                 }
-            }).catch(error => {
-                response.send(error);
+            }).catch(() => {
+                response.status(400).send({
+                    success: false
+                });
             });
         });
     }
     register(request, response) {
         let { email, firstName, lastName, password } = request.body;
+        if (!email || !firstName || !lastName || !password) {
+            response.status(400).send({
+                success: false
+            });
+            return;
+        }
         let user = new user_1.default({
             email,
             name: {
@@ -65,10 +81,8 @@ let AuthController = class AuthController {
                 token,
                 success: true
             });
-        }).catch(error => {
-            console.log("error", error);
-            response.send({
-                error,
+        }).catch(() => {
+            response.send(400).send({
                 success: false
             });
         });
