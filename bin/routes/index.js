@@ -4,7 +4,11 @@ const teams_controller_1 = require("./teams.controller");
 const matches_controller_1 = require("./matches.controller");
 const groups_controller_1 = require("./groups.controller");
 const auth_controller_1 = require("./auth.controller");
+const me_controller_1 = require("./me.controller");
 let routes = [{
+        path: "/me",
+        controller: me_controller_1.MeController
+    }, {
         path: "/auth",
         controller: auth_controller_1.AuthController
     }, {
