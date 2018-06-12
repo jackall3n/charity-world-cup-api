@@ -58,7 +58,7 @@ let AuthController = class AuthController {
             password
         });
         user.save().then(result => {
-            let token = jwt.sign({ id: user._id }, config_1.default.auth.secret, {
+            let token = jwt.sign({ id: result._id }, config_1.default.auth.secret, {
                 expiresIn: '2 days'
             });
             response.send({

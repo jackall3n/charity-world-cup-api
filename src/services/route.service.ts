@@ -33,7 +33,7 @@ export default class RouteService {
                     method_arguments.splice(1, 0, passport.authenticate('jwt', {session: false}))
                 }
 
-                method_router[method_type].apply(null, method_arguments);
+                method_router[method_type].apply(this, method_arguments);
             }
 
             router.use(route.path, method_router);
