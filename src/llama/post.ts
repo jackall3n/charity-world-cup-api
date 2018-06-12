@@ -8,6 +8,7 @@ export interface PostDecorator {
 
 export interface Post {
     path: string;
+    authorise?: boolean;
 }
 
 export const Post: PostDecorator = makePropDecorator('Post', (p: Post) => ({method: "POST", ...p}));

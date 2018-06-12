@@ -11,10 +11,11 @@ export class MeController {
 
     @Get({path: '/', authorise: true})
     me(request: e.Request, response: e.Response): void {
-        User.findById(request.user.id).exec().then(user => {
+        User.findById(request.user.id).populate({path: 'donation', select: 'created -_id'}).exec().then(user => {
             response.send({
                 id: user._id,
-                name: user.name
+                name: user.name,
+                donation: user.donation
             })
         }).catch(error => {
             response.status(401).send();

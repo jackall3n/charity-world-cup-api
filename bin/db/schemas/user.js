@@ -16,6 +16,10 @@ exports.UserSchema = new mongoose_1.Schema({
     name: {
         first: String,
         last: String
+    },
+    donation: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'Donation'
     }
 });
 exports.UserSchema.pre('save', function (next) {

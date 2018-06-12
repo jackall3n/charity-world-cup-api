@@ -6,6 +6,7 @@ export interface IUser extends Document {
     name: any;
     password: string;
     comparePassword: (password: string) => Promise<boolean>;
+    donation?: any;
 }
 
 export const UserSchema = new Schema({
@@ -22,6 +23,10 @@ export const UserSchema = new Schema({
     name: {
         first: String,
         last: String
+    },
+    donation: {
+        type: Schema.Types.ObjectId,
+        ref: 'Donation'
     }
 });
 
