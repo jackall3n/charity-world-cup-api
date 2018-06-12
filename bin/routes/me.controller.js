@@ -16,14 +16,17 @@ const get_1 = require("../llama/get");
 let MeController = class MeController {
     me(request, response) {
         user_1.default.findOne({}).exec().then(user => {
-            response.send(user);
+            response.send({
+                id: user._id,
+                name: user.name
+            });
         }).catch(error => {
-            response.status(402).send();
+            response.status(401).send();
         });
     }
 };
 __decorate([
-    get_1.Get({ path: '/' }),
+    get_1.Get({ path: '/', authorise: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)

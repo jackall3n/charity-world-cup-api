@@ -3,7 +3,7 @@ import * as bcrypt from 'bcryptjs';
 
 export interface IUser extends Document {
     email: string;
-    name: string;
+    name: any;
     password: string;
     comparePassword: (password: string) => Promise<boolean>;
 }

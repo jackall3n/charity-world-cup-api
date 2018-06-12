@@ -9,12 +9,15 @@ import {Get} from "../llama/get";
 @Controller()
 export class MeController {
 
-    @Get({path: '/'})
+    @Get({path: '/', authorise: true})
     me(request: e.Request, response: e.Response): void {
         User.findOne({}).exec().then(user => {
-            response.send(user)
+            response.send({
+                id: user._id,
+                name: user.name
+            })
         }).catch(error => {
-            response.status(402).send();
+            response.status(401).send();
         })
     }
 }
