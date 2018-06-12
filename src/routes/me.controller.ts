@@ -11,7 +11,7 @@ export class MeController {
 
     @Get({path: '/', authorise: true})
     me(request: e.Request, response: e.Response): void {
-        User.findOne({}).exec().then(user => {
+        User.findOne(request.user.id).exec().then(user => {
             response.send({
                 id: user._id,
                 name: user.name
