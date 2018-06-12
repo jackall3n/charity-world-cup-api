@@ -18,14 +18,14 @@ export class DonationsController {
             return;
         }
 
-        User.findById(request.user.id).exec().then(user => {
+        User.findById(request.user.id).populate('donation').exec().then(user => {
             if(user.donation) {
                 response.status(400).send({
                     success: false
                 })
                 return;
             }
-            
+
             let donation = new Donation({
                 user: user._id,
                 donation_id
@@ -35,6 +35,7 @@ export class DonationsController {
                 user.donation = result._id;
                 user.save().then(result => {
                     response.send({
+                        donation,
                         success: true
                     })
                 }).catch(() => {

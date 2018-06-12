@@ -23,8 +23,13 @@ let DonationsController = class DonationsController {
             });
             return;
         }
-        console.log(donation_id);
-        user_1.default.findById(request.user.id).exec().then(user => {
+        user_1.default.findById(request.user.id).populate('donation').exec().then(user => {
+            if (user.donation) {
+                response.status(400).send({
+                    success: false
+                });
+                return;
+            }
             let donation = new donation_1.default({
                 user: user._id,
                 donation_id
@@ -33,6 +38,7 @@ let DonationsController = class DonationsController {
                 user.donation = result._id;
                 user.save().then(result => {
                     response.send({
+                        donation,
                         success: true
                     });
                 }).catch(() => {
