@@ -8,7 +8,10 @@ exports.DonationSchema = new mongoose.Schema({
         ref: 'User'
     },
     donation_id: String,
-    created: Date
+    created: Date,
+    submitted: Date,
+    status: String,
+    amount: Number
 });
 exports.DonationSchema.pre('save', function (next) {
     let donation = this;

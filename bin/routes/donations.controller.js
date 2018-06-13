@@ -15,38 +15,29 @@ const post_1 = require("../llama/post");
 const donation_1 = require("../db/schemas/donation");
 const user_1 = require("../db/schemas/user");
 let DonationsController = class DonationsController {
-    save(request, response) {
-        let { donation_id } = request.body;
-        if (!donation_id) {
-            response.status(400).send({
-                success: false
+    placeholder(request, response) {
+        let { amount } = request.body;
+        user_1.default.findById(request.user.id).populate('donations').exec().then(user => {
+            var donation = new donation_1.default({
+                status: "CREATED",
+                user: user.id,
+                amount
             });
-            return;
-        }
-        user_1.default.findById(request.user.id).populate('donation').exec().then(user => {
-            if (user.donation) {
-                response.status(400).send({
-                    success: false
-                });
-                return;
-            }
-            let donation = new donation_1.default({
-                user: user._id,
-                donation_id
-            });
-            donation.save().then(result => {
-                user.donation = result._id;
-                user.save().then(result => {
+            donation.save().then(_donation => {
+                user.donations.push(_donation._id);
+                user.save().then(_user => {
                     response.send({
-                        donation,
+                        donation: {
+                            id: _donation._id
+                        },
                         success: true
                     });
-                }).catch(() => {
+                }).catch(error => {
                     response.status(400).send({
                         success: false
                     });
                 });
-            }).catch(() => {
+            }).catch(error => {
                 response.status(400).send({
                     success: false
                 });
@@ -57,7 +48,37 @@ let DonationsController = class DonationsController {
             });
         });
     }
+    save(request, response) {
+        let { donation_id, reference } = request.body;
+        donation_1.default.findById(reference).exec().then(donation => {
+            donation.donation_id = donation_id;
+            donation.status = "SUBMITTED";
+            donation.submitted = new Date();
+            donation.save().then(_donation => {
+                response.send({
+                    _donation,
+                    success: true
+                });
+            });
+        }).catch(error => {
+            response.status(400).send({
+                success: false
+            });
+        });
+        if (!donation_id) {
+            response.status(400).send({
+                success: false
+            });
+            return;
+        }
+    }
 };
+__decorate([
+    post_1.Post({ path: "/placeholder", authorise: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", void 0)
+], DonationsController.prototype, "placeholder", null);
 __decorate([
     post_1.Post({ path: "/save", authorise: true }),
     __metadata("design:type", Function),

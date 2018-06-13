@@ -20,7 +20,11 @@ exports.UserSchema = new mongoose_1.Schema({
     donation: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Donation'
-    }
+    },
+    donations: [{
+            type: mongoose_1.Schema.Types.ObjectId,
+            ref: 'Donation'
+        }]
 });
 exports.UserSchema.pre('save', function (next) {
     let user = this;

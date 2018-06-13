@@ -4,7 +4,10 @@ import {Schema} from "mongoose";
 export interface IDonation extends mongoose.Document {
     user: any;
     created: Date;
+    submitted: Date;
+    status: string;
     donation_id: string;
+    amount: number;
 }
 
 export const DonationSchema = new mongoose.Schema({
@@ -13,7 +16,10 @@ export const DonationSchema = new mongoose.Schema({
         ref: 'User'
     },
     donation_id: String,
-    created: Date
+    created: Date,
+    submitted: Date,
+    status: String,
+    amount: Number
 });
 
 DonationSchema.pre('save', function(next) {

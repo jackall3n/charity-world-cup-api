@@ -15,11 +15,12 @@ const user_1 = require("../db/schemas/user");
 const get_1 = require("../llama/get");
 let MeController = class MeController {
     me(request, response) {
-        user_1.default.findById(request.user.id).populate({ path: 'donation', select: 'created -_id' }).exec().then(user => {
+        user_1.default.findById(request.user.id).populate('donation donations').exec().then(user => {
             response.send({
                 id: user._id,
                 name: user.name,
-                donation: user.donation
+                donation: user.donation,
+                donations: user.donations
             });
         }).catch(error => {
             response.status(401).send();
