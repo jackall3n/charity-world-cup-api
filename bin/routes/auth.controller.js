@@ -81,8 +81,8 @@ let AuthController = class AuthController {
                 token,
                 success: true
             });
-        }).catch(() => {
-            response.send(400).send({
+        }).catch((error) => {
+            response.status(400).send({
                 success: false
             });
         });

@@ -94,8 +94,8 @@ export class AuthController {
                 success: true
             })
 
-        }).catch(() => {
-            response.send(400).send({
+        }).catch((error) => {
+            response.status(400).send({
                 success: false
             });
         })
