@@ -12,9 +12,7 @@ export class EmailController {
 
     @Get({path: '/teams'})
     teams(request: e.Request, response: e.Response): void {
-        response.send({
-            error: 'unlock me'
-        })/*
+        
         User.find({teams: {$exists: true}}).populate('teams').exec().then(users => {
 
             let emails : any[] = _(users).map(user => {
@@ -34,7 +32,7 @@ export class EmailController {
 
         }).catch(error => {
             response.send(error)
-        })*/
+        })
     }
 
     @Get({path: '/remind'})

@@ -40,11 +40,6 @@ let AdminController = class AdminController {
         });
     }
     clear(request, response) {
-        user_1.default.update({}, { $set: { teams: [] }, }, { multi: true }).then(affected => {
-            response.send(affected);
-        }).catch(error => {
-            response.send(error);
-        });
     }
     process_teams(request, response) {
         Promise.all([

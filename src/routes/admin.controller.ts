@@ -42,11 +42,11 @@ export class AdminController {
             response.send(users);
         });*/
 
-        User.update({}, { $set: { teams: [] }, }, {multi: true}).then(affected => {
+        /*User.update({}, { $set: { teams: [] }, }, {multi: true}).then(affected => {
             response.send(affected);
         }).catch(error => {
             response.send(error);
-        });
+        });*/
     }
 
     @Get({path: '/process_teams'})

@@ -13,13 +13,29 @@ const e = require("express");
 const llama_1 = require("../llama");
 const get_1 = require("../llama/get");
 const email_service_1 = require("../services/email.service");
+const team_email_1 = require("../templates/team.email");
+const user_1 = require("../db/schemas/user");
+const _ = require("lodash");
 let EmailController = class EmailController {
     constructor() {
         this.emailService = new email_service_1.EmailService();
     }
     teams(request, response) {
-        response.send({
-            error: 'unlock me'
+        user_1.default.find({ teams: { $exists: true } }).populate('teams').exec().then(users => {
+            let emails = _(users).map(user => {
+                let to = user.email;
+                let subject = 'Your teams have been selected!';
+                let html = team_email_1.TeamTemplate.parse({
+                    user: user,
+                    teams: user.teams
+                });
+                return this.emailService.send(to, subject, html);
+            }).value();
+            Promise.all(emails).then(results => {
+                response.send(results);
+            });
+        }).catch(error => {
+            response.send(error);
         });
     }
     remind(request, response) {

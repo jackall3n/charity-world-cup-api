@@ -25,12 +25,12 @@ let routes: any[] = [{
 },{
     path: "/donations",
     controller: DonationsController
-},{
+}/*,{
     path: "/jack",
     controller: AdminController
 },{
     path: "/email",
     controller: EmailController
-}];
+}*/];
 
 export default routes;
