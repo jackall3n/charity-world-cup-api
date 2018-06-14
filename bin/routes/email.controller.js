@@ -11,30 +11,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const e = require("express");
 const llama_1 = require("../llama");
-const user_1 = require("../db/schemas/user");
 const get_1 = require("../llama/get");
-let MeController = class MeController {
-    me(request, response) {
-        user_1.default.findById(request.user.id).populate('donation donations teams').exec().then(user => {
-            response.send({
-                id: user._id,
-                name: user.name,
-                donation: user.donation,
-                donations: user.donations,
-                teams: user.teams
-            });
-        }).catch(error => {
-            response.status(401).send();
+const email_service_1 = require("../services/email.service");
+let EmailController = class EmailController {
+    constructor() {
+        this.emailService = new email_service_1.EmailService();
+    }
+    teams(request, response) {
+        response.send({
+            error: 'unlock me'
         });
+    }
+    remind(request, response) {
+        response.send({});
     }
 };
 __decorate([
-    get_1.Get({ path: '/', authorise: true }),
+    get_1.Get({ path: '/teams' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
-], MeController.prototype, "me", null);
-MeController = __decorate([
+], EmailController.prototype, "teams", null);
+__decorate([
+    get_1.Get({ path: '/remind' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", void 0)
+], EmailController.prototype, "remind", null);
+EmailController = __decorate([
     llama_1.Controller()
-], MeController);
-exports.MeController = MeController;
+], EmailController);
+exports.EmailController = EmailController;

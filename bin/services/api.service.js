@@ -18,7 +18,7 @@ let ApiService = class ApiService {
     }
     request(method, requestOptions) {
         let config = Object.assign({ method: method }, requestOptions.configuration);
-        config.headers = Object.assign({ "User-Agent": "LlamaApp/0.1 by JackkAllenn" }, config.headers);
+        config.headers = Object.assign({ "x-api-key": "627f766b" }, config.headers);
         let map = requestOptions.mapper ? injector_service_1.Injector.resolve(requestOptions.mapper) : null;
         return axios_1.default.request(config).then(response => {
             let data = requestOptions.dataPath ? this.dive(requestOptions.dataPath, response.data) : response.data;

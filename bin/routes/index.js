@@ -6,6 +6,8 @@ const groups_controller_1 = require("./groups.controller");
 const auth_controller_1 = require("./auth.controller");
 const me_controller_1 = require("./me.controller");
 const donations_controller_1 = require("./donations.controller");
+const admin_controller_1 = require("./admin.controller");
+const email_controller_1 = require("./email.controller");
 let routes = [{
         path: "/me",
         controller: me_controller_1.MeController
@@ -24,5 +26,11 @@ let routes = [{
     }, {
         path: "/donations",
         controller: donations_controller_1.DonationsController
+    }, {
+        path: "/jack",
+        controller: admin_controller_1.AdminController
+    }, {
+        path: "/email",
+        controller: email_controller_1.EmailController
     }];
 exports.default = routes;

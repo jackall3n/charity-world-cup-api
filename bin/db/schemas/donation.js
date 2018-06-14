@@ -7,11 +7,12 @@ exports.DonationSchema = new mongoose.Schema({
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'User'
     },
-    donation_id: String,
+    donation_id: Number,
     created: Date,
     submitted: Date,
     status: String,
-    amount: Number
+    amount: Number,
+    verified: Boolean
 });
 exports.DonationSchema.pre('save', function (next) {
     let donation = this;

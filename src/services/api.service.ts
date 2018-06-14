@@ -34,7 +34,7 @@ export default class ApiService {
             ...requestOptions.configuration
         };
 
-        config.headers = {"User-Agent": "LlamaApp/0.1 by JackkAllenn", ...config.headers};
+        config.headers = {"x-api-key": "627f766b", ...config.headers};
 
         let map = requestOptions.mapper ? Injector.resolve<Mapper<T>>(requestOptions.mapper) : null;
 

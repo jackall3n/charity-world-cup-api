@@ -6,8 +6,9 @@ export interface IDonation extends mongoose.Document {
     created: Date;
     submitted: Date;
     status: string;
-    donation_id: string;
+    donation_id?: number;
     amount: number;
+    verified: boolean;
 }
 
 export const DonationSchema = new mongoose.Schema({
@@ -15,11 +16,12 @@ export const DonationSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    donation_id: String,
+    donation_id: Number,
     created: Date,
     submitted: Date,
     status: String,
-    amount: Number
+    amount: Number,
+    verified: Boolean
 });
 
 DonationSchema.pre('save', function(next) {

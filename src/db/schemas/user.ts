@@ -8,6 +8,7 @@ export interface IUser extends Document {
     comparePassword: (password: string) => Promise<boolean>;
     donation?: any;
     donations: any[];
+    teams: any[];
 }
 
 export const UserSchema = new Schema({
@@ -25,10 +26,10 @@ export const UserSchema = new Schema({
         first: String,
         last: String
     },
-    donation: {
+    teams: [{
         type: Schema.Types.ObjectId,
-        ref: 'Donation'
-    },
+        ref: 'Team'
+    }],
     donations: [{
         type: Schema.Types.ObjectId,
         ref: 'Donation'

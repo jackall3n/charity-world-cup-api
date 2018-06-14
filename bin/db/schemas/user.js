@@ -17,10 +17,10 @@ exports.UserSchema = new mongoose_1.Schema({
         first: String,
         last: String
     },
-    donation: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'Donation'
-    },
+    teams: [{
+            type: mongoose_1.Schema.Types.ObjectId,
+            ref: 'Team'
+        }],
     donations: [{
             type: mongoose_1.Schema.Types.ObjectId,
             ref: 'Donation'
